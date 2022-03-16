@@ -9,6 +9,6 @@ existance on page.
 2. Configuration file **conftest.py** for scripts that are run via  
 pytest. Allows to launch a specific browser with a specific language  
 preference.  
-Arguments that are passed via command line:
-- browser name (Chrome and Firefox are available),
-- language preference for HTTP request.
+Arguments that are passed via command line:  
+    - browser name (Chrome and Firefox are available),
+    - language preference for HTTP request.
