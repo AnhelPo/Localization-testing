@@ -7,17 +7,15 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-supported_drivers = {
-    'chrome': webdriver.Chrome,
-    'firefox': webdriver.Firefox
-}
+
+SUPPORTED_BROWSERS = ('chrome', 'firefox')
 
 
 def pytest_addoption(parser):
     parser.addoption('--browser_name', action='store', default='chrome',
-                               help='Choose browser: chrome or firefox')
+                     help='Choose browser: chrome or firefox')
     parser.addoption('--language', action='store', default='ru',
-                               help='Choose language: ru, en, es...')
+                     help='Choose language: ru, en, es...')
 
 
 def browser_options(browser_name, user_language):
@@ -40,10 +38,10 @@ def browser(request):
     browser_name = request.config.getoption('browser_name')
     user_language = request.config.getoption('language')
 
-    if browser_name in supported_drivers:
+    if browser_name in SUPPORTED_BROWSERS:
         driver = browser_options(browser_name, user_language)
     else:
-        supported = ', '.join(supported_drivers.keys())
+        supported = ', '.join(SUPPORTED_BROWSERS)
         raise pytest.UsageError(f'Supported browsers: {supported}')
 
     yield driver
