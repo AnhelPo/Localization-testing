@@ -12,9 +12,8 @@ from selenium.webdriver.common.by import By
 URL = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
 
 
-def test_basket_button(browser):
+def test_basket_button_exists(browser):
     browser.get(URL)
-    add_to_cart = browser.find_elements(By.CLASS_NAME, 'btn-add-to-basket')
-    assert len(add_to_cart) > 0, \
-               'Button for adding item to the shopping cart was not found!'
     # time.sleep(10)
+    assert browser.find_element(By.CLASS_NAME, 'btn-add-to-basket'), \
+               'Button for adding item to the shopping cart was not found!'
